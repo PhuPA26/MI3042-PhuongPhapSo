@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phòng thí nghiệm phương pháp số</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="top"><h1>Phương pháp số</h1><span>Nội suy · xấp xỉ hàm bằng đa thức</span></header>
+<main class="layout">
+  <aside class="panel">
+    <section>
+      <h2>Dữ liệu</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".xlsx,.xlsm" hidden>
+        <b>Chọn file .xlsx</b><small>Cột A: x · Cột B: f(x) (chấp nhận 1,1 hoặc 1.1)</small>
+      </label>
+      <div class="samples">Hoặc dùng mẫu:
+        <button class="link" data-sample="runge">1/(25x²+1)</button>
+        <button class="link" data-sample="exp3">3ˣ</button>
+        <button class="link" data-sample="sin">sin x</button>
+        <button class="link" data-sample="slide">Newton (slide)</button>
+        <button class="link" data-sample="cau1">Câu 1 (Newton lùi)</button>
+        <button class="link" data-sample="inverse">Nội suy ngược</button>
+        <button class="link" data-sample="spline">Spline</button>
+        <button class="link" data-sample="lsq">Bình phương tối thiểu</button>
+      </div>
+      <div id="info" class="info" hidden></div>
+    </section>
+    <section id="s-range" hidden>
+      <h2>Khoảng nội suy [a, b]</h2>
+      <div class="row"><label>a<input id="a" type="text" inputmode="decimal"></label>
+        <label>b<input id="b" type="text" inputmode="decimal"></label></div>
+      <p class="hint">Có thể là một đoạn con của dữ liệu.</p>
+    </section>
+    <section id="s-algo" hidden>
+      <h2>Thuật toán</h2>
+      <select id="algo"></select>
+      <p id="algo-desc" class="hint"></p>
+      <div id="params"></div>
+      <button id="run" class="primary">Tính</button>
+    </section>
+  </aside>
+  <section class="results" id="results">
+    <div class="empty" id="empty"><h2>Bắt đầu từ dữ liệu</h2><p>Tải một file xlsx hoặc chọn dữ liệu mẫu ở bên trái, nhập [a, b], chọn thuật toán rồi bấm Tính.</p></div>
+    <div id="error" class="error" hidden></div>
+    <div id="out" hidden>
+      <div class="out-head"><h2 id="out-title"></h2></div>
+      <div id="summary" class="summary"></div>
+      <div id="steps"></div>
+      <div id="notes"></div>
+      <div id="tables"></div>
+    </div>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
